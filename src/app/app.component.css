@@ -1,0 +1,50 @@
+.navbar{
+    z-index: 99;
+    position: fixed;
+    padding: 7px 30px;
+    color: white;
+    font-weight: 500;
+    background-color: #272b3f;
+    width: 100%;
+}
+a{
+    cursor: pointer;
+    color: white;
+    transition: 0.4s;
+}
+.footerLink{
+    color: rgb(71, 66, 121);
+}
+a:hover{
+    color: rgb(231, 131, 60) !important;
+    transform: scale(1.1);
+}
+.navbar-nav{
+    margin-left: auto;
+}
+.fa{
+    background-color: rgb(71, 66, 121);
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+.fa:hover{
+    background-color: rgb(85, 80, 143);
+}
+.fa-facebook{
+    margin-left: 30px;
+}
+.showBtn{
+    background-color: rgba(157, 81, 201, 0.4);
+    color: rgb(233, 233, 233) !important;
+    padding: 6px 16px !important;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+.myBooksBtn{
+    background-color: rgba(64, 207, 76, 0.4);
+}
+.showBtn:hover{
+    color: white !important;
+    transform: scale(1.05);
+}
