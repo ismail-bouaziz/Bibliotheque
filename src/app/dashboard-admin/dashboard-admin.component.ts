@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BooksCRUDService } from '../books-crud.service';
+import { Book } from '../models/book';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -6,10 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-admin.component.css']
 })
 export class DashboardAdminComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  allBooks: Array<Book>;
+  allSelectedBooks: Array<Book>;
+  searchInput: any;
+  constructor(private booksCRUDService: BooksCRUDService) {
   }
 
+  ngOnInit(): void {
+    this.allBooks = this.booksCRUDService.getAllBooks();
+    this.allSelectedBooks = this.allBooks;
+    this.searchInput = document.getElementById("search-input");
+  }
+  reSelectBooks(): void {
+    var searchWord = this.searchInput ? this.searchInput.value : "";
+    this.allSelectedBooks = [];
+    this.allBooks.forEach(book => {
+      if (book.title.toUpperCase().includes(searchWord.toUpperCase())) {
+        this.allSelectedBooks.push(book)
+      }
+    });
+    console.log(this.allSelectedBooks);
+    console.log(searchWord);
+  }
 }

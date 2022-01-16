@@ -1,1 +1,24 @@
-<p>dashboard-admin works!</p>
+<div class="content">
+    <div class="dashboard">
+        <!-- Search bar-->
+        <div class="input-group">
+            <input id="search-input" placeholder="Search" type="search" />
+            <button id="search-button" type="button" class="btn btn-primary" (click)="reSelectBooks()">
+                <i class=" fa fa-search"></i>Search
+            </button>
+        </div>
+        <!-- Search bar-->
+
+        <div class="booksSlider">
+            <div class="card" *ngFor="let book of allSelectedBooks">
+                <div class="card-body">
+                    <h5 class="card-title">{{book.title}}</h5>
+                    <p class="card-text">Author: {{book.author}}</p>
+                    <button class="btn btn-primary addBookBtn">Remove book</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

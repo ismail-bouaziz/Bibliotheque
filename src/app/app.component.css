@@ -48,3 +48,12 @@ a:hover{
     color: white !important;
     transform: scale(1.05);
 }
+
+.saveChangesButton{
+    border: 1.5px solid #4d536e;
+    background-color:#4d536e;
+    border-radius: 5px;
+}
+.saveChangesButton:hover{
+    background-color: #5e6892;
+}

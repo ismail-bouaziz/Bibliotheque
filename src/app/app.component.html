@@ -1,6 +1,8 @@
 <div class="main">
   <nav class="navbar navbar-expand-lg navbar-dark fixed">
-    <a class="navbar-brand" (click)="scrollTo('Home'); switchToHomeScreen()">Library</a>
+    <a class="navbar-brand" *ngIf="!userDashboardOn && !adminDashboardOn"
+      (click)="scrollTo('Home'); switchToHomeScreen()">Library</a>
+    <a class="navbar-brand" *ngIf="userDashboardOn||adminDashboardOn" (click)="logOut(); scrollTo('Home');">Sign out</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -10,14 +12,53 @@
         <a class="nav-item nav-link" *ngIf="welcomeScreenOn" (click)="scrollTo('about-us-div')">About us</a>
         <a class="nav-item nav-link" *ngIf="welcomeScreenOn" (click)="scrollTo('contact-us-div')">Contact us</a>
         <a class=" nav-item nav-link" *ngIf="welcomeScreenOn" (click)="switchToSignIn()">Sign in</a>
-        <a class=" nav-item nav-link showBtn" *ngIf="userDashboardOn">All books</a>
+        <a class=" nav-item nav-link showBtn" *ngIf="userDashboardOn || adminDashboardOn">All books</a>
         <a class=" nav-item nav-link showBtn myBooksBtn" *ngIf="userDashboardOn">My books</a>
+        <a class=" nav-item nav-link showBtn myBooksBtn" data-toggle="modal" data-target="#addBookModal"
+          *ngIf="adminDashboardOn">Add book</a>
       </div>
     </div>
   </nav>
+
+  <!-- Modal -->
+  <div *ngIf="adminDashboardOn" class="modal fade" id="addBookModal" tabindex="-1" role="dialog"
+    aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Add book</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="pt-8">
+            <!-- Email input -->
+            <div class="form-outline mb-2">
+              <label class="form-label" for="titleInput">Book Title</label>
+              <input type="email" id="titleInput" class="form-control form-control-lg"
+                placeholder="Enter the book's title" />
+            </div>
+            <!-- Password input -->
+            <div class="form-outline mb-2">
+              <label class="form-label" for="authorInput">Book Author</label>
+              <input type="password" id="authorInput" class="form-control form-control-lg"
+                placeholder="Enter the book's author" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary saveChangesButton">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-dashboard-admin *ngIf="adminDashboardOn"></app-dashboard-admin>
   <app-dashboard-user *ngIf="userDashboardOn"></app-dashboard-user>
   <app-welcome-screen *ngIf="welcomeScreenOn"></app-welcome-screen>
-  <app-sign-in-screen *ngIf="signInScreenOn"></app-sign-in-screen>
+  <app-sign-in-screen *ngIf=" signInScreenOn" (loggedIn)="logIn($event)"></app-sign-in-screen>
 
 </div>
 <div class="footer">

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LogInService } from '../log-in.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-sign-in-screen',
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sign-in-screen.component.css']
 })
 export class SignInScreenComponent implements OnInit {
+  @Output() loggedIn = new EventEmitter<boolean>(false);
   registerScreenOn: boolean = false;
-  constructor() {
+  constructor(private logInService: LogInService) {
 
   }
   toggleRegistration(): void {
@@ -15,5 +18,8 @@ export class SignInScreenComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-
+  logIn(): void {
+    this.logInService.logIn("", "");
+    this.loggedIn.emit(true);
+  }
 }

@@ -8,13 +8,13 @@
     margin-right: 7px;
 }
 .card-title{
-    height: 22px !important;
+    height: 26px !important;
     overflow-y:hidden;
     margin-bottom: 5px;
 }
 .card-text{
     overflow-y:auto;
-    height: 100px !important;
+    height: 40px !important;
 }
 .booksSlider{
     width: 100% !important;
